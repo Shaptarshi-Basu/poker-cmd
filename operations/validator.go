@@ -21,7 +21,7 @@ var cardValues = map[string]int{
 func checkIfAllCardsAreValid(hand string) error {
 	for _, c := range hand {
 		if _, ok := cardValues[string(c)]; !ok {
-			return fmt.Errorf("Error: Hand %s has an invalid card %c\n", hand, c)
+			return fmt.Errorf("Error: Hand %s has an invalid card %c", hand, c)
 		}
 	}
 	return nil
