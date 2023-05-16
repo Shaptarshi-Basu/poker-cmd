@@ -18,7 +18,7 @@ var cardValues = map[string]int{
 	"2": 2,
 }
 
-func checkifAllCardsAreValid(hand string) error {
+func checkIfAllCardsAreValid(hand string) error {
 	for _, c := range hand {
 		if _, ok := cardValues[string(c)]; !ok {
 			return fmt.Errorf("Error: Hand %s has an invalid card %c\n", hand, c)
@@ -26,27 +26,26 @@ func checkifAllCardsAreValid(hand string) error {
 	}
 	return nil
 }
-func checkNoOfCardsInHand(fh, sh string) {
+func checkNoOfCardsInHand(fh, sh string) error {
 	if len(fh) != 5 {
-		fmt.Print("First hand should have five cards")
-		return
+		return fmt.Errorf("First hand should have five cards")
 	}
 	if len(sh) != 5 {
-		fmt.Println("Second hand should have five cards")
-		return
+		return fmt.Errorf("Second hand should have five cards")
 	}
+	return nil
 }
 
-func handValidator(fh, sh string) {
-	checkNoOfCardsInHand(fh, sh)
-
-	if err := checkifAllCardsAreValid(fh); err != nil {
-		fmt.Println(err.Error())
-		return
+func handValidator(fh, sh string) error {
+	if err := checkNoOfCardsInHand(fh, sh); err != nil {
+		return err
+	}
+	if err := checkIfAllCardsAreValid(fh); err != nil {
+		return err
 	}
 
-	if err := checkifAllCardsAreValid(sh); err != nil {
-		fmt.Println(err.Error())
-		return
+	if err := checkIfAllCardsAreValid(sh); err != nil {
+		return err
 	}
+	return nil
 }
