@@ -141,7 +141,7 @@ func Test_strongerFullHouse(t *testing.T) {
 			tt.player1.setHandType()
 			tt.player2.setHandType()
 
-			res, err := strongerFullhouse(tt.player1, tt.player2)
+			res, err := strongerFullHouse(tt.player1, tt.player2)
 			if err != nil {
 				t.Errorf("Error should have been nil but got %s", err.Error())
 			}

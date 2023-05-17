@@ -17,9 +17,9 @@ func fetchStrongerHand(p1, p2 Player) (string, error) {
 	if p1handValue == p2handValue {
 		switch p1.Type {
 		case FOUR_KIND:
-			return strongerFullhouse(p1, p2)
+			return strongerFullHouse(p1, p2)
 		case FULL_HOUSE:
-			return strongerFullhouse(p1, p2)
+			return strongerFullHouse(p1, p2)
 		case TRIPLE:
 			return strongerTriple(p1, p2)
 		case TWO_PAIR:
@@ -34,7 +34,7 @@ func fetchStrongerHand(p1, p2 Player) (string, error) {
 	} else if p2handValue > p1handValue {
 		return p2.Hand_Number, nil
 	}
-	return "", fmt.Errorf("Invalid hands")
+	return "", fmt.Errorf("invalid hands")
 }
 
 func strongerFourKind(p1, p2 Player) (string, error) {
@@ -42,17 +42,17 @@ func strongerFourKind(p1, p2 Player) (string, error) {
 	var ok bool
 	for k, v := range p1.CardMap {
 		if v == 4 {
-			value1, ok = cardValues[string(k)]
+			value1, ok = cardValues[k]
 			if !ok {
-				return "", fmt.Errorf("Some error")
+				return "", fmt.Errorf("value for card %s could not be found", k)
 			}
 		}
 	}
 	for k, v := range p2.CardMap {
 		if v == 4 {
-			value2, ok = cardValues[string(k)]
+			value2, ok = cardValues[k]
 			if !ok {
-				return "", fmt.Errorf("Some error")
+				return "", fmt.Errorf("value for card %s could not be found", k)
 			}
 		}
 	}
@@ -81,17 +81,17 @@ func strongerTriple(p1, p2 Player) (string, error) {
 	var ok bool
 	for k, v := range p1.CardMap {
 		if v == 3 {
-			value1, ok = cardValues[string(k)]
+			value1, ok = cardValues[k]
 			if !ok {
-				return "", fmt.Errorf("Some error")
+				return "", fmt.Errorf("value for card %s could not be found", k)
 			}
 		}
 	}
 	for k, v := range p2.CardMap {
 		if v == 3 {
-			value2, ok = cardValues[string(k)]
+			value2, ok = cardValues[k]
 			if !ok {
-				return "", fmt.Errorf("Some error")
+				return "", fmt.Errorf("value for card %s could not be found", k)
 			}
 		}
 	}
@@ -113,22 +113,22 @@ func strongerTriple(p1, p2 Player) (string, error) {
 	}
 }
 
-func strongerFullhouse(p1, p2 Player) (string, error) {
+func strongerFullHouse(p1, p2 Player) (string, error) {
 	var value1, value2 int
 	var ok bool
 	for k, v := range p1.CardMap {
 		if v == 3 {
-			value1, ok = cardValues[string(k)]
+			value1, ok = cardValues[k]
 			if !ok {
-				return "", fmt.Errorf("Some error")
+				return "", fmt.Errorf("value for card %s could not be found", k)
 			}
 		}
 	}
 	for k, v := range p2.CardMap {
 		if v == 3 {
-			value2, ok = cardValues[string(k)]
+			value2, ok = cardValues[k]
 			if !ok {
-				return "", fmt.Errorf("Some error")
+				return "", fmt.Errorf("value for card %s could not be found", k)
 			}
 		}
 	}
@@ -161,18 +161,18 @@ func strongerPair(p1, p2 Player) (string, error) {
 	var values1, values2 []int
 	for k, v := range p1.CardMap {
 		if v == 2 {
-			value1, ok := cardValues[string(k)]
+			value1, ok := cardValues[k]
 			if !ok {
-				return "", fmt.Errorf("Some error")
+				return "", fmt.Errorf("value for card %s could not be found", k)
 			}
 			values1 = append(values1, value1)
 		}
 	}
 	for k, v := range p2.CardMap {
 		if v == 2 {
-			value2, ok := cardValues[string(k)]
+			value2, ok := cardValues[k]
 			if !ok {
-				return "", fmt.Errorf("Some error")
+				return "", fmt.Errorf("value for card %s could not be found", k)
 			}
 			values2 = append(values2, value2)
 		}
@@ -210,9 +210,9 @@ func returnHandPointsForSingles(cardMap map[string]int) ([]int, error) {
 	var values []int
 	for k, v := range cardMap {
 		if v == 1 {
-			value, ok := cardValues[string(k)]
+			value, ok := cardValues[k]
 			if !ok {
-				return []int{}, fmt.Errorf("Some error")
+				return []int{}, fmt.Errorf("value for the card %s could not be found", k)
 			}
 			values = append(values, value)
 		}
