@@ -1,4 +1,4 @@
-# Poker commad line
+# Poker Commad Line
 
 Command line program written in Go that evaluates two poker hands and determines the winner based on simplified poker rules.
 
@@ -26,9 +26,14 @@ Command line program written in Go that evaluates two poker hands and determines
 
 **Note:** The input hands must be in the format of a string containing the card symbols with no spaces. For example, "77377" represents a hand with four sevens and one three.
 
-## How to RUN
+## Execution details
 
-1. Install Docker on your system if it is not already installed.
-2. Clone or download the repository to your local machine.
-3. Navigate to the root directory of the project where the Dockerfile is located.
-4. Build the Docker image by running the following command:
+1. Install Docker on your system or make sure its present.
+2. Build docker image and then run.
+
+```bash
+#build the docker image
+docker build -t poker .
+
+# run the dockerized program
+docker run -it poker
