@@ -9,10 +9,10 @@ import (
 func main() {
 	var fh, sh string
 
-	fmt.Println("Enter the first input:")
+	fmt.Println("Enter the first Hand:")
 	fmt.Scan(&fh)
 
-	fmt.Println("Enter the second input:")
+	fmt.Println("Enter the second Hand:")
 	fmt.Scan(&sh)
 
 	player1 := operations.Player{Hand_Number: "Hand 1", Hand: fh}
