@@ -17,7 +17,7 @@ func fetchStrongerHand(p1, p2 Player) (string, error) {
 	if p1handValue == p2handValue {
 		switch p1.Type {
 		case FOUR_KIND:
-			return strongerFullHouse(p1, p2)
+			return strongerFourKind(p1, p2)
 		case FULL_HOUSE:
 			return strongerFullHouse(p1, p2)
 		case TRIPLE:
