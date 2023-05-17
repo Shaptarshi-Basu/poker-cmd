@@ -29,7 +29,7 @@ var cardKinds = map[string]int{
 
 func (p *Player) createCardMap() error {
 	if len(p.Hand) != 5 {
-		return fmt.Errorf("Player should have five cards in his hand")
+		return fmt.Errorf("player should have five cards in his hand")
 	}
 	cards := make(map[string]int)
 	for _, c := range p.Hand {
